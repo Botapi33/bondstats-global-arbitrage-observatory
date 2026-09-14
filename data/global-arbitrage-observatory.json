@@ -1,22 +1,2425 @@
 {
   "schemaVersion": "BSARB-1.0",
   "modelVersion": "FX-REFERENCE-DISLOCATION-1.0",
-  "asOf": null,
-  "dataState": "AWAITING FIRST RUN",
-  "sourceDates": {},
-  "summary": {
-    "currencies": 0,
-    "triangles": 0,
-    "dislocations": 0,
-    "largestGapBp": null
+  "asOf": "2026-09-14T04:20:49.751Z",
+  "dataState": "REFERENCE",
+  "sourceDates": {
+    "ecb": "2026-09-11",
+    "bankOfCanada": "2026-09-11"
   },
-  "currencies": [],
-  "edges": [],
-  "triangles": [],
-  "dislocations": [],
+  "summary": {
+    "currencies": 30,
+    "triangles": 4,
+    "dislocations": 4,
+    "largestGapBp": 26.22
+  },
+  "currencies": [
+    {
+      "code": "AUD"
+    },
+    {
+      "code": "BRL"
+    },
+    {
+      "code": "CAD"
+    },
+    {
+      "code": "CHF"
+    },
+    {
+      "code": "CNY"
+    },
+    {
+      "code": "CZK"
+    },
+    {
+      "code": "DKK"
+    },
+    {
+      "code": "EUR"
+    },
+    {
+      "code": "GBP"
+    },
+    {
+      "code": "HKD"
+    },
+    {
+      "code": "HUF"
+    },
+    {
+      "code": "IDR"
+    },
+    {
+      "code": "ILS"
+    },
+    {
+      "code": "INR"
+    },
+    {
+      "code": "ISK"
+    },
+    {
+      "code": "JPY"
+    },
+    {
+      "code": "KRW"
+    },
+    {
+      "code": "MXN"
+    },
+    {
+      "code": "MYR"
+    },
+    {
+      "code": "NOK"
+    },
+    {
+      "code": "NZD"
+    },
+    {
+      "code": "PHP"
+    },
+    {
+      "code": "PLN"
+    },
+    {
+      "code": "RON"
+    },
+    {
+      "code": "SEK"
+    },
+    {
+      "code": "SGD"
+    },
+    {
+      "code": "THB"
+    },
+    {
+      "code": "TRY"
+    },
+    {
+      "code": "USD"
+    },
+    {
+      "code": "ZAR"
+    }
+  ],
+  "edges": [
+    {
+      "from": "AUD",
+      "to": "BRL",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "CAD",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "CHF",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "CNY",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "CZK",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "AUD",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "CAD",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "CHF",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "CNY",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "CZK",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "BRL",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "CHF",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "CNY",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "CZK",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "CAD",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "CNY",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "CZK",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "CHF",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "CZK",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "CNY",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "DKK",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "CZK",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "EUR",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "DKK",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "GBP",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "EUR",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "HKD",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "GBP",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "HUF",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "HKD",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "IDR",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "HUF",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "ILS",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "IDR",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "INR",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "ILS",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "ISK",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "INR",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "JPY",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "ISK",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "KRW",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "JPY",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "MXN",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "KRW",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "MYR",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "MXN",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "NOK",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "MYR",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "NZD",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "NOK",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "PHP",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "NZD",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "PLN",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "PHP",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "RON",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "PLN",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "SEK",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "RON",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "SEK",
+      "to": "SGD",
+      "classification": "normal"
+    },
+    {
+      "from": "SEK",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "SEK",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "SEK",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "SEK",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "SGD",
+      "to": "THB",
+      "classification": "normal"
+    },
+    {
+      "from": "SGD",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "SGD",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "SGD",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "THB",
+      "to": "TRY",
+      "classification": "normal"
+    },
+    {
+      "from": "THB",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "THB",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "TRY",
+      "to": "USD",
+      "classification": "normal"
+    },
+    {
+      "from": "TRY",
+      "to": "ZAR",
+      "classification": "normal"
+    },
+    {
+      "from": "USD",
+      "to": "ZAR",
+      "classification": "normal"
+    }
+  ],
+  "triangles": [
+    {
+      "id": "REF-USD-CAD",
+      "path": "USD→CAD→EUR→USD",
+      "rawGapBp": 5.89,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.3866,
+      "impliedRate": 1.385783,
+      "note": "Bank of Canada FXUSDCAD versus ECB-implied USD/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-EUR-CAD",
+      "path": "EUR→CAD→EUR→EUR",
+      "rawGapBp": 13.7,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.6086,
+      "impliedRate": 1.6064,
+      "note": "Bank of Canada FXEURCAD versus ECB-implied EUR/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-GBP-CAD",
+      "path": "GBP→CAD→EUR→GBP",
+      "rawGapBp": 16.91,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.8751,
+      "impliedRate": 1.871934,
+      "note": "Bank of Canada FXGBPCAD versus ECB-implied GBP/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-JPY-CAD",
+      "path": "JPY→CAD→EUR→JPY",
+      "rawGapBp": 26.22,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 0.00902,
+      "impliedRate": 0.008996,
+      "note": "Bank of Canada FXJPYCAD versus ECB-implied JPY/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    }
+  ],
+  "dislocations": [
+    {
+      "id": "REF-JPY-CAD",
+      "path": "JPY→CAD→EUR→JPY",
+      "rawGapBp": 26.22,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 0.00902,
+      "impliedRate": 0.008996,
+      "note": "Bank of Canada FXJPYCAD versus ECB-implied JPY/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-GBP-CAD",
+      "path": "GBP→CAD→EUR→GBP",
+      "rawGapBp": 16.91,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.8751,
+      "impliedRate": 1.871934,
+      "note": "Bank of Canada FXGBPCAD versus ECB-implied GBP/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-EUR-CAD",
+      "path": "EUR→CAD→EUR→EUR",
+      "rawGapBp": 13.7,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.6086,
+      "impliedRate": 1.6064,
+      "note": "Bank of Canada FXEURCAD versus ECB-implied EUR/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    },
+    {
+      "id": "REF-USD-CAD",
+      "path": "USD→CAD→EUR→USD",
+      "rawGapBp": 5.89,
+      "frictionBp": null,
+      "residualGapBp": null,
+      "persistence": "1 reference observation",
+      "synchronization": "NON-SYNCHRONOUS",
+      "classification": "review",
+      "directRate": 1.3866,
+      "impliedRate": 1.385783,
+      "note": "Bank of Canada FXUSDCAD versus ECB-implied USD/CAD. Reference observations are not synchronized; this is a pricing-consistency diagnostic, not an executable arbitrage signal.",
+      "sourceA": "Bank of Canada Valet API",
+      "sourceB": "European Central Bank euro reference rates"
+    }
+  ],
   "methodology": {
     "executable": false,
-    "reason": "Awaiting first official-source engine run."
+    "reason": "Current engine compares official reference observations that are not synchronized and do not contain executable bid/ask quotes."
   },
-  "sources": []
+  "sources": [
+    {
+      "name": "European Central Bank",
+      "dataset": "Euro foreign exchange reference rates",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+    },
+    {
+      "name": "Bank of Canada",
+      "dataset": "Valet FX observations",
+      "url": "https://www.bankofcanada.ca/valet/observations/FXUSDCAD,FXEURCAD,FXGBPCAD,FXJPYCAD/json?recent=1"
+    }
+  ]
 }
