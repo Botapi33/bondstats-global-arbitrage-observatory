@@ -6,62 +6,47 @@ on:
     - cron: "25 17 * * 1-5"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build-and-sync:
+  update-data:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Observatory
+      - name: Checkout public repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
 
-      - name: Test
+      - name: Test engine
         run: npm test
 
-      - name: Build
+      - name: Build official-source snapshot
         run: npm run build
 
-      - name: Validate
+      - name: Validate snapshot
         run: npm run validate
 
-      - name: Checkout BondStats site
-        uses: actions/checkout@v4
-        with:
-          repository: Botapi33/bondstats-site
-          token: ${{ secrets.BONDSTATS_SITE_TOKEN }}
-          ref: main
-          path: bondstats-site
-
-      - name: Publish Observatory data
+      - name: Publish JSON
         run: |
-          mkdir -p bondstats-site/public/data
-          mkdir -p bondstats-site/src/data
-
+          mkdir -p data
           cp data/output/global-arbitrage-observatory.json \
-            bondstats-site/public/data/global-arbitrage-observatory.json
+             data/global-arbitrage-observatory.json
 
-          cp data/output/global-arbitrage-observatory.json \
-            bondstats-site/src/data/global-arbitrage-observatory.json
-
-      - name: Push update
-        working-directory: bondstats-site
+      - name: Commit updated data
         run: |
-          git config user.name "bondstats-arbitrage-bot"
+          git config user.name "bondstats-data-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          git add public/data/global-arbitrage-observatory.json
-          git add src/data/global-arbitrage-observatory.json
+          git add data/global-arbitrage-observatory.json
 
           if git diff --cached --quiet; then
             echo "No data changes."
             exit 0
           fi
 
-          git commit -m "Update Global Arbitrage Observatory"
+          git commit -m "Update Global Arbitrage Observatory data"
           git push
