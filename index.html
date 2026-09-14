@@ -1,196 +1,105 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Global Arbitrage Observatory — BondStats</title>
-<meta name="description" content="BondStats Global Arbitrage Observatory: a network-first view of FX pricing dislocations and triangular consistency.">
+<meta name="description" content="BondStats Global Arbitrage Observatory: a network-first comparison of official FX reference cross-rates.">
 <style>
-:root{
-  color-scheme:dark;
-  --bg:#070a08;--panel:#0b100d;--panel2:#0e1511;--line:#1b2a22;--line2:#294234;
-  --text:#eef4ef;--soft:#b7c2bb;--muted:#7f8e85;--green:#68e89d;--green2:#a5f4c2;
-  --amber:#e6be67;--red:#e77f7f;
-}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,select{font:inherit}
-body{min-height:100vh;overflow-x:hidden}
-.shell{display:grid;grid-template-columns:84px minmax(0,1fr);min-height:100vh}
-.rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:18px 0;background:#080c09;z-index:20}
-.mark{width:32px;height:32px;border:1px solid #31513e;display:grid;place-items:center;font-weight:800;color:var(--green);font-size:13px;letter-spacing:-.03em}
-.railnav{display:flex;flex-direction:column;gap:8px;margin-top:28px;width:100%;align-items:center}
-.railnav button{width:42px;height:42px;border:1px solid transparent;background:transparent;color:#76847b;cursor:pointer;font-size:10px;letter-spacing:.08em}
-.railnav button.active,.railnav button:hover{border-color:var(--line2);color:var(--green);background:#0d1510}
-.railfoot{margin-top:auto;writing-mode:vertical-rl;transform:rotate(180deg);font:9px ui-monospace,monospace;letter-spacing:.18em;color:#536158;text-transform:uppercase}
-.workspace{min-width:0}
-.topbar{height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:18px;position:sticky;top:0;background:rgba(7,10,8,.94);backdrop-filter:blur(10px);z-index:10}
-.titleblock{min-width:0}.product{font-size:12px;font-weight:760;letter-spacing:.02em}.sub{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em;margin-top:2px}
-.topspacer{flex:1}.state{display:flex;gap:16px;align-items:center}.stat{border-left:1px solid var(--line);padding-left:14px}.stat .k{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.stat .v{font:12px ui-monospace,monospace;margin-top:3px}
-.main{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(310px,.55fr);min-height:calc(100vh - 64px)}
-.maparea{position:relative;min-height:760px;border-right:1px solid var(--line);background:
-radial-gradient(circle at 50% 47%,rgba(76,210,127,.06),transparent 36%),
-linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-background-size:auto,42px 42px,42px 42px}
-.maphead{position:absolute;left:28px;top:24px;z-index:3;max-width:560px}
-.eyebrow{font-size:9px;color:var(--green);letter-spacing:.16em;text-transform:uppercase;font-weight:760}
-.maphead h1{font-size:clamp(28px,3.8vw,54px);line-height:1;letter-spacing:-.055em;margin:8px 0 9px;font-weight:700}
-.maphead p{margin:0;color:var(--muted);font-size:12px;line-height:1.55;max-width:500px}
-#fxCanvas{width:100%;height:100%;min-height:760px;display:block}
-.legend{position:absolute;left:28px;bottom:24px;display:flex;gap:18px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(7,10,8,.72);padding:8px 10px;border:1px solid var(--line)}
-.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}.g{background:var(--green)}.a{background:var(--amber)}.r{background:var(--red)}
-.side{display:flex;flex-direction:column;min-width:0;background:#090d0a}
-.panel{padding:22px;border-bottom:1px solid var(--line)}.panel:last-child{border-bottom:0}
-.paneltitle{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.paneltitle h2{font-size:11px;margin:0;text-transform:uppercase;letter-spacing:.13em}.badge{font:9px ui-monospace,monospace;color:var(--green);border:1px solid #264233;padding:5px 7px}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-.kpi{background:var(--panel);padding:14px}.kpi .k{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.kpi .v{font:20px ui-monospace,monospace;margin-top:7px}.kpi .s{font-size:9px;color:#647269;margin-top:4px}
-.tape{max-height:360px;overflow:auto;border-top:1px solid var(--line)}
-.trow{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}.trow:hover{background:#0c120e}.path{font:11px ui-monospace,monospace}.meta{font-size:9px;color:var(--muted);margin-top:4px}.gap{font:12px ui-monospace,monospace;text-align:right}.status{font-size:8px;text-transform:uppercase;letter-spacing:.1em;margin-top:3px}.good{color:var(--green2)}.warn{color:var(--amber)}.bad{color:var(--red)}
-.empty{font-size:11px;color:var(--muted);line-height:1.6;padding:4px 0}
-.inspect h3{font-size:16px;margin:0 0 14px}.kv{display:grid;grid-template-columns:1fr auto;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:10px}.kv span:first-child{color:var(--muted)}.mono{font-family:ui-monospace,monospace}
-.labrow{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.labrow select{width:100%;background:#08100b;color:var(--text);border:1px solid var(--line2);padding:9px;font:10px ui-monospace,monospace}
-.run{width:100%;margin-top:8px;border:1px solid #2f553e;background:#0d1a12;color:var(--green2);padding:10px;cursor:pointer;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-.run:hover{background:#112318}
-.labresult{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.labbig{font:22px ui-monospace,monospace}.labcopy{font-size:9px;color:var(--muted);line-height:1.55;margin-top:6px}
-.bottomstrip{grid-column:1/-1;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;background:#080c09}
-.note{padding:16px 20px;border-right:1px solid var(--line)}.note:last-child{border-right:0}.note b{font-size:9px;letter-spacing:.1em;text-transform:uppercase}.note p{font-size:9px;color:var(--muted);line-height:1.55;margin:7px 0 0}
-@media(max-width:1050px){.main{grid-template-columns:1fr}.maparea{border-right:0;border-bottom:1px solid var(--line);min-height:620px}#fxCanvas{min-height:620px}.side{display:grid;grid-template-columns:1fr 1fr}.panel{border-right:1px solid var(--line)}}
-@media(max-width:720px){.shell{grid-template-columns:1fr}.rail{display:none}.topbar{padding:0 14px}.state .stat:nth-child(-n+2){display:none}.main{display:block}.maparea{min-height:520px}.maphead{left:18px;top:18px;right:18px}.maphead h1{font-size:34px}#fxCanvas{min-height:520px}.legend{left:18px;bottom:14px;flex-wrap:wrap}.side{display:block}.panel{border-right:0}.bottomstrip{grid-template-columns:1fr}.note{border-right:0;border-bottom:1px solid var(--line)}}
+:root{color-scheme:dark;--bg:#070a08;--panel:#0b100d;--panel2:#0f1712;--line:#1a2a21;--line2:#294436;--text:#eef4ef;--soft:#b6c1ba;--muted:#7c8a82;--green:#68e89d;--green2:#a6f2c1;--amber:#e4bd67;--red:#e37f7f}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,select,input{font:inherit}body{min-height:100vh;overflow-x:hidden}
+.app{display:grid;grid-template-columns:72px minmax(0,1fr);min-height:100vh}.rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:#080c09;display:flex;flex-direction:column;align-items:center;padding:16px 0;z-index:30}.logo{width:34px;height:34px;border:1px solid #31523f;display:grid;place-items:center;color:var(--green);font-weight:800;font-size:12px}.railnav{display:grid;gap:8px;margin-top:24px}.railnav button{width:38px;height:38px;border:1px solid transparent;background:transparent;color:#68766e;font:9px ui-monospace,monospace;cursor:pointer}.railnav button.active,.railnav button:hover{color:var(--green);border-color:var(--line2);background:#0d1510}.railname{margin-top:auto;writing-mode:vertical-rl;transform:rotate(180deg);font:8px ui-monospace,monospace;letter-spacing:.16em;color:#536058;text-transform:uppercase}
+.workspace{min-width:0}.topbar{height:62px;display:flex;align-items:center;padding:0 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(7,10,8,.94);backdrop-filter:blur(12px);z-index:20}.product{font-size:12px;font-weight:780}.product small{display:block;color:var(--muted);font-size:8px;letter-spacing:.14em;text-transform:uppercase;margin-top:3px;font-weight:600}.spacer{flex:1}.topstats{display:flex;height:100%}.topstat{min-width:104px;padding:12px 14px;border-left:1px solid var(--line)}.topstat .k{font-size:7px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}.topstat .v{font:13px ui-monospace,monospace;margin-top:6px}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(330px,.45fr);min-height:calc(100vh - 62px)}.map{position:relative;min-height:720px;border-right:1px solid var(--line);background:radial-gradient(circle at 52% 48%,rgba(75,205,125,.055),transparent 35%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,40px 40px,40px 40px}.maphead{position:absolute;left:26px;top:22px;z-index:3;max-width:570px}.eyebrow{font-size:8px;color:var(--green);letter-spacing:.16em;text-transform:uppercase;font-weight:780}.maphead h1{font-size:clamp(28px,3.7vw,52px);line-height:1;letter-spacing:-.055em;margin:8px 0 9px}.maphead p{margin:0;color:var(--muted);font-size:11px;line-height:1.55;max-width:520px}.maptools{position:absolute;left:26px;top:150px;z-index:4;display:flex;gap:7px}.maptools button{border:1px solid var(--line2);background:#09100c;color:var(--muted);padding:7px 9px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.maptools button.active{color:var(--green2);border-color:#3e6d50}.canvas{width:100%;height:100%;min-height:720px;display:block}.legend{position:absolute;left:26px;bottom:20px;border:1px solid var(--line);background:rgba(7,10,8,.82);padding:7px 9px;display:flex;gap:14px;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px}.g{background:var(--green)}.a{background:var(--amber)}.r{background:var(--red)}
+.side{background:#090d0a;min-width:0}.panel{padding:20px;border-bottom:1px solid var(--line)}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.panelhead h2{font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin:0}.badge{font:8px ui-monospace,monospace;color:var(--green);border:1px solid #294837;padding:5px 7px}.pulse{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.p{background:var(--panel);padding:13px}.p .k{font-size:7px;letter-spacing:.11em;color:var(--muted);text-transform:uppercase}.p .v{font:18px ui-monospace,monospace;margin-top:7px}.p .s{font-size:8px;color:#637168;margin-top:4px}
+.filters{display:flex;gap:6px;margin-bottom:10px}.filters button{border:1px solid var(--line);background:transparent;color:var(--muted);font-size:8px;padding:6px 8px;cursor:pointer}.filters button.active{border-color:#385d48;color:var(--green2)}.tape{max-height:300px;overflow:auto;border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}.row:hover{background:#0c120e}.path{font:11px ui-monospace,monospace}.meta{font-size:8px;color:var(--muted);margin-top:4px}.gap{font:11px ui-monospace,monospace;text-align:right}.status{font-size:7px;letter-spacing:.1em;text-transform:uppercase;text-align:right;margin-top:4px}.good{color:var(--green2)}.warn{color:var(--amber)}.bad{color:var(--red)}
+.inspect h3{font-size:15px;margin:0 0 12px}.kv{display:grid;grid-template-columns:1fr auto;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:9px}.kv span:first-child{color:var(--muted)}.mono{font-family:ui-monospace,monospace}.empty{font-size:10px;color:var(--muted);line-height:1.6}
+.labsel{display:grid;grid-template-columns:1fr 1fr;gap:7px}.labsel select{width:100%;background:#08100b;color:var(--text);border:1px solid var(--line2);padding:9px;font:10px ui-monospace,monospace}.run{margin-top:8px;width:100%;border:1px solid #315640;background:#0c1b12;color:var(--green2);padding:10px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}.run:hover{background:#112419}.labresult{margin-top:12px;padding-top:11px;border-top:1px solid var(--line)}.big{font:21px ui-monospace,monospace}.copy{font-size:8px;color:var(--muted);line-height:1.55;margin-top:5px}
+.currencylist{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-height:180px;overflow:auto}.currency{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--line);padding:8px 9px;font-size:8px}.currency b{font:10px ui-monospace,monospace}.currency span{color:var(--muted)}
+.history{display:flex;align-items:end;gap:3px;height:72px;padding-top:8px;border-top:1px solid var(--line)}.bar{flex:1;min-width:4px;background:#214731;position:relative}.bar.flag{background:#715d2b}.bar.hot{background:#703c3c}.bar:hover:after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#0d1510;border:1px solid var(--line2);padding:5px;color:var(--text);font:7px ui-monospace,monospace;white-space:nowrap;z-index:4}
+.bottom{grid-column:1/-1;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);background:#080c09}.note{padding:15px 18px;border-right:1px solid var(--line)}.note:last-child{border-right:0}.note b{font-size:8px;letter-spacing:.1em;text-transform:uppercase}.note p{margin:6px 0 0;color:var(--muted);font-size:8px;line-height:1.5}
+@media(max-width:1050px){.grid{grid-template-columns:1fr}.map{border-right:0;border-bottom:1px solid var(--line);min-height:610px}.canvas{min-height:610px}.side{display:grid;grid-template-columns:1fr 1fr}.panel{border-right:1px solid var(--line)}.bottom{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.app{grid-template-columns:1fr}.rail{display:none}.topbar{padding:0 12px}.topstat:nth-child(-n+3){display:none}.grid{display:block}.map{min-height:510px}.canvas{min-height:510px}.maphead{left:16px;right:16px}.maphead h1{font-size:33px}.maptools{left:16px;top:140px}.legend{left:16px}.side{display:block}.panel{border-right:0}.bottom{grid-template-columns:1fr}.note{border-right:0;border-bottom:1px solid var(--line)}}
 </style>
 </head>
 <body>
-<div class="shell">
-  <aside class="rail">
-    <div class="mark">BS</div>
-    <nav class="railnav">
-      <button class="active" title="Network">NET</button>
-      <button title="Tape" onclick="document.getElementById('tapePanel').scrollIntoView({behavior:'smooth'})">TAP</button>
-      <button title="Lab" onclick="document.getElementById('labPanel').scrollIntoView({behavior:'smooth'})">LAB</button>
-    </nav>
-    <div class="railfoot">Global Arbitrage Observatory</div>
-  </aside>
+<div class="app">
+<aside class="rail"><div class="logo">BS</div><nav class="railnav"><button class="active">NET</button><button onclick="document.getElementById('tape').scrollIntoView({behavior:'smooth'})">GAP</button><button onclick="document.getElementById('lab').scrollIntoView({behavior:'smooth'})">LAB</button><button onclick="document.getElementById('coverage').scrollIntoView({behavior:'smooth'})">COV</button></nav><div class="railname">Global Arbitrage Observatory</div></aside>
+<section class="workspace">
+<header class="topbar"><div class="product">Global Arbitrage Observatory<small>BondStats · cross-source FX reference network</small></div><div class="spacer"></div><div class="topstats"><div class="topstat"><div class="k">Currencies</div><div class="v" id="mCurrencies">—</div></div><div class="topstat"><div class="k">Cross-rates</div><div class="v" id="mPairs">—</div></div><div class="topstat"><div class="k">Flagged</div><div class="v" id="mFlagged">—</div></div><div class="topstat"><div class="k">Largest gap</div><div class="v" id="mGap">—</div></div></div></header>
+<main class="grid">
+<section class="map">
+<div class="maphead"><div class="eyebrow">Official reference cross-rate network</div><h1>Trace the disagreement.</h1><p>Every connection compares the same cross-rate reconstructed independently from ECB and Bank of Canada reference data. The map shows where those two official reference systems diverge.</p></div>
+<div class="maptools"><button class="active" data-mode="all">All links</button><button data-mode="flagged">Flagged only</button><button data-mode="hot">Dislocations</button></div>
+<canvas class="canvas" id="fxCanvas"></canvas><div class="legend"><span><i class="dot g"></i>&lt;10 bp</span><span><i class="dot a"></i>10–25 bp</span><span><i class="dot r"></i>≥25 bp</span></div>
+</section>
 
-  <section class="workspace">
-    <header class="topbar">
-      <div class="titleblock"><div class="product">Global Arbitrage Observatory</div><div class="sub">BondStats · FX pricing consistency</div></div>
-      <div class="topspacer"></div>
-      <div class="state">
-        <div class="stat"><div class="k">Currencies</div><div class="v" id="mCurrencies">—</div></div>
-        <div class="stat"><div class="k">Triangles</div><div class="v" id="mTriangles">—</div></div>
-        <div class="stat"><div class="k">Dislocations</div><div class="v" id="mDislocations">—</div></div>
-        <div class="stat"><div class="k">Data</div><div class="v" id="mState">WAIT</div></div>
-      </div>
-    </header>
+<aside class="side">
+<section class="panel"><div class="panelhead"><h2>Market pulse</h2><span class="badge" id="mAsOf">NO SNAPSHOT</span></div><div class="pulse"><div class="p"><div class="k">Median gap</div><div class="v" id="mMedian">—</div><div class="s">across all cross-rates</div></div><div class="p"><div class="k">Data state</div><div class="v" id="mState">WAIT</div><div class="s">reference data only</div></div></div></section>
 
-    <main class="main">
-      <section class="maparea">
-        <div class="maphead">
-          <div class="eyebrow">Network-first market map</div>
-          <h1>Trace the gap.</h1>
-          <p>See where direct and implied FX relationships diverge. The map emphasizes structure first, then lets you inspect persistence, timing quality and the residual gap.</p>
-        </div>
-        <canvas id="fxCanvas"></canvas>
-        <div class="legend"><span><i class="dot g"></i>normal</span><span><i class="dot a"></i>review</span><span><i class="dot r"></i>dislocation</span></div>
-      </section>
+<section class="panel" id="tape"><div class="panelhead"><h2>Gap tape</h2><span class="badge" id="tapeCount">—</span></div><div class="filters"><button class="active" data-filter="flagged">Flagged</button><button data-filter="all">Largest 40</button><button data-filter="hot">Dislocations</button></div><div class="tape" id="tapeRows"><div class="empty">Waiting for current snapshot.</div></div></section>
 
-      <aside class="side">
-        <section class="panel">
-          <div class="paneltitle"><h2>Market pulse</h2><span class="badge" id="mAsOf">NO SNAPSHOT</span></div>
-          <div class="kpis">
-            <div class="kpi"><div class="k">Largest gap</div><div class="v" id="mGap">—</div><div class="s">raw basis points</div></div>
-            <div class="kpi"><div class="k">Reference mode</div><div class="v">NON-EXEC</div><div class="s">official reference data</div></div>
-          </div>
-        </section>
+<section class="panel inspect" id="inspector"><div class="panelhead"><h2>Cross-rate inspector</h2><span class="badge">SELECT</span></div><h3>No cross-rate selected</h3><div class="empty">Select a row from the gap tape. The inspector compares ECB-implied and Bank of Canada-implied cross-rates side by side.</div></section>
 
-        <section class="panel" id="tapePanel">
-          <div class="paneltitle"><h2>Dislocation tape</h2><span class="badge">LIVE SET</span></div>
-          <div class="tape" id="tape"><div class="empty">Waiting for the current public snapshot.</div></div>
-        </section>
+<section class="panel" id="lab"><div class="panelhead"><h2>Cross-rate lab</h2><span class="badge">ALL VALID PAIRS</span></div><div class="labsel"><select id="base"></select><select id="quote"></select></div><button class="run" id="calculate">Compare official cross-rates</button><div class="labresult"><div class="big" id="labGap">—</div><div class="copy" id="labCopy">Choose two currencies from the current coverage. Every selectable pair is calculable.</div></div></section>
 
-        <section class="panel inspect" id="inspector">
-          <div class="paneltitle"><h2>Path inspector</h2><span class="badge">SELECT</span></div>
-          <h3>No path selected</h3>
-          <div class="empty">Choose a tape item to inspect the direct/implied gap, synchronization state and classification.</div>
-        </section>
+<section class="panel" id="coverage"><div class="panelhead"><h2>Coverage heat</h2><span class="badge" id="coverageCount">—</span></div><div class="currencylist" id="currencyList"></div></section>
 
-        <section class="panel" id="labPanel">
-          <div class="paneltitle"><h2>Triangle lab</h2><span class="badge">QUERY</span></div>
-          <div class="labrow"><select id="ca"></select><select id="cb"></select><select id="cc"></select></div>
-          <button class="run" id="calculate">Interrogate path</button>
-          <div class="labresult"><div class="labbig" id="labGap">—</div><div class="labcopy" id="labCopy">Load a valid public snapshot to begin.</div></div>
-        </section>
-      </aside>
+<section class="panel"><div class="panelhead"><h2>Snapshot history</h2><span class="badge">PERSISTENCE</span></div><div class="history" id="history"></div><div class="empty" style="margin-top:8px">Each bar is one published snapshot; height represents the largest absolute cross-source gap.</div></section>
+</aside>
 
-      <section class="bottomstrip">
-        <div class="note"><b>Synchronization first</b><p>Reference observations that are not aligned in time remain visible but are never presented as executable arbitrage.</p></div>
-        <div class="note"><b>Friction matters</b><p>Bid/ask spread, fees and execution costs must be considered before a residual difference can be interpreted as actionable.</p></div>
-        <div class="note"><b>Persistence matters</b><p>A single mismatch can be noise. Repeated dislocations are more informative than one isolated print.</p></div>
-      </section>
-    </main>
-  </section>
-</div>
+<section class="bottom"><div class="note"><b>Two official systems</b><p>ECB and Bank of Canada reference datasets independently imply the same currency cross-rates, allowing broad consistency comparison.</p></div><div class="note"><b>Not execution</b><p>These are reference observations, not synchronized executable bid/ask quotes. A gap is not risk-free profit.</p></div><div class="note"><b>Dense coverage</b><p>The engine compares every overlapping currency pair rather than only a handful of hard-coded triangles.</p></div><div class="note"><b>Persistence</b><p>Flagged pairs retain consecutive-snapshot persistence so repeated differences can be separated from one-off noise.</p></div></section>
+</main></section></div>
 
 <script>
-const DATA_URL='./data/global-arbitrage-observatory.json'; let D=null;
-const $=id=>document.getElementById(id);
+const DATA='./data/global-arbitrage-observatory.json';let D=null,MODE='all',FILTER='flagged',DRAW=[];
+const $=id=>document.getElementById(id), n=(v,d=1)=>Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const n=(v,d=1)=>Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
-function cls(x){return x?.classification==='dislocation'?'bad':x?.classification==='review'?'warn':'good'}
+const cls=x=>x?.classification==='dislocation'?'bad':x?.classification==='review'?'warn':'good';
+
 function summary(){
-  const s=D?.summary||{};
-  $('mCurrencies').textContent=s.currencies??D?.currencies?.length??'—';
-  $('mTriangles').textContent=s.triangles??D?.triangles?.length??'—';
-  $('mDislocations').textContent=s.dislocations??D?.dislocations?.length??0;
-  $('mGap').textContent=Number.isFinite(+s.largestGapBp)?`${n(s.largestGapBp)} bp`:'—';
-  $('mState').textContent=D?.dataState||'LIVE';
-  $('mAsOf').textContent=D?.asOf?String(D.asOf).slice(0,10):'NO SNAPSHOT';
+ const s=D.summary||{};$('mCurrencies').textContent=s.currencies??'—';$('mPairs').textContent=s.crossRates??'—';$('mFlagged').textContent=s.flagged??'—';$('mGap').textContent=Number.isFinite(+s.largestGapBp)?`${n(s.largestGapBp)} bp`:'—';$('mMedian').textContent=Number.isFinite(+s.medianGapBp)?`${n(s.medianGapBp)} bp`:'—';$('mState').textContent=(D.dataState||'REFERENCE').replace('REFERENCE · ','');$('mAsOf').textContent=D.asOf?String(D.asOf).slice(0,10):'NO SNAPSHOT';
 }
 function inspect(x){
-  $('inspector').innerHTML=`<div class="paneltitle"><h2>Path inspector</h2><span class="badge">${esc((x.classification||'observed').toUpperCase())}</span></div>
-  <h3>${esc(x.path||x.id||'Observed path')}</h3>
-  <div class="kv"><span>Raw gap</span><b class="mono ${cls(x)}">${n(x.rawGapBp)} bp</b></div>
-  <div class="kv"><span>Estimated friction</span><b class="mono">${n(x.frictionBp)} bp</b></div>
-  <div class="kv"><span>Residual</span><b class="mono ${cls(x)}">${n(x.residualGapBp)} bp</b></div>
-  <div class="kv"><span>Persistence</span><b class="mono">${esc(x.persistence||'—')}</b></div>
-  <div class="kv"><span>Synchronization</span><b class="mono">${esc(x.synchronization||'—')}</b></div>
-  <div class="empty" style="margin-top:12px">${esc(x.note||'No additional public note.')}</div>`;
+ $('inspector').innerHTML=`<div class="panelhead"><h2>Cross-rate inspector</h2><span class="badge">${esc((x.classification||'normal').toUpperCase())}</span></div><h3>${esc(x.path)}</h3><div class="kv"><span>ECB implied</span><b class="mono">${n(x.ecbCross,6)}</b></div><div class="kv"><span>BoC implied</span><b class="mono">${n(x.bocCross,6)}</b></div><div class="kv"><span>Gap</span><b class="mono ${cls(x)}">${n(x.rawGapBp,2)} bp</b></div><div class="kv"><span>ECB date</span><b class="mono">${esc(x.ecbDate)}</b></div><div class="kv"><span>BoC date</span><b class="mono">${esc(x.bocDate)}</b></div><div class="kv"><span>Synchronization</span><b class="mono">${esc(x.synchronization)}</b></div><div class="kv"><span>Persistence</span><b class="mono">${esc(x.persistence)}</b></div><div class="empty" style="margin-top:11px">${esc(x.note)}</div>`;
 }
 function tape(){
-  const a=Array.isArray(D?.dislocations)?D.dislocations:[];
-  if(!a.length){$('tape').innerHTML='<div class="empty">No published dislocations above the current threshold.</div>';return}
-  $('tape').innerHTML=a.map((x,i)=>`<div class="trow" data-i="${i}"><div><div class="path">${esc(x.path||x.id)}</div><div class="meta">${esc(x.persistence||'—')} · ${esc(x.synchronization||'—')}</div></div><div><div class="gap ${cls(x)}">${n(x.rawGapBp)} bp</div><div class="status ${cls(x)}">${esc(x.classification||'review')}</div></div></div>`).join('');
-  document.querySelectorAll('.trow').forEach(el=>el.onclick=()=>inspect(a[+el.dataset.i]));
+ let a=D.pairs||[];
+ if(FILTER==='flagged')a=a.filter(x=>x.classification!=='normal');
+ else if(FILTER==='hot')a=a.filter(x=>x.classification==='dislocation');
+ else a=a.slice(0,40);
+ $('tapeCount').textContent=`${a.length} SHOWN`;
+ $('tapeRows').innerHTML=a.length?a.map((x,i)=>`<div class="row" data-id="${esc(x.id)}"><div><div class="path">${esc(x.path)}</div><div class="meta">ECB ${n(x.ecbCross,5)} · BoC ${n(x.bocCross,5)} · ${esc(x.persistence)}</div></div><div><div class="gap ${cls(x)}">${n(x.rawGapBp,2)} bp</div><div class="status ${cls(x)}">${esc(x.classification)}</div></div></div>`).join(''):'<div class="empty">No pairs in this filter.</div>';
+ document.querySelectorAll('.row').forEach(el=>el.onclick=()=>inspect(D.pairs.find(x=>x.id===el.dataset.id)));
 }
 function lab(){
-  const cs=(D?.currencies||[]).map(x=>typeof x==='string'?x:x.code).filter(Boolean);
-  ['ca','cb','cc'].forEach((id,j)=>{$(id).innerHTML=cs.map((c,i)=>`<option ${i===j?'selected':''}>${esc(c)}</option>`).join('')});
-  $('calculate').onclick=()=>{
-    const a=$('ca').value,b=$('cb').value,c=$('cc').value,key=`${a}→${b}→${c}`;
-    const t=(D?.triangles||[]).find(x=>x.path===key||x.path===`${key}→${a}`);
-    if(!t){$('labGap').textContent='NO MATCH';$('labCopy').textContent='This path is not present in the current published snapshot. Missing observations are not synthesized in the browser.';return}
-    $('labGap').textContent=`${n(t.rawGapBp,2)} bp`;
-    $('labCopy').textContent=t.note||`Classification: ${t.classification||'observed'}.`;
-    inspect(t);
-  }
+ const cs=(D.currencies||[]).map(x=>x.code);const b=$('base'),q=$('quote');
+ b.innerHTML=cs.map((c,i)=>`<option ${i===0?'selected':''}>${c}</option>`).join('');
+ q.innerHTML=cs.map((c,i)=>`<option ${i===1?'selected':''}>${c}</option>`).join('');
+ function ensure(){if(b.value===q.value){const idx=(cs.indexOf(b.value)+1)%cs.length;q.value=cs[idx]}}
+ b.onchange=ensure;q.onchange=ensure;
+ $('calculate').onclick=()=>{ensure();const a=[b.value,q.value].sort();const id=`${a[0]}-${a[1]}`;const x=D.pairs.find(p=>p.id===id);if(!x){$('labGap').textContent='UNAVAILABLE';$('labCopy').textContent='The selected pair is not present in current overlapping official coverage.';return}$('labGap').textContent=`${n(x.rawGapBp,2)} bp`;$('labCopy').textContent=`ECB-implied ${x.path}: ${n(x.ecbCross,6)} · BoC-implied: ${n(x.bocCross,6)} · ${x.classification.toUpperCase()} · ${x.synchronization}.`;inspect(x)}
+ $('calculate').click();
+}
+function coverage(){
+ const c=D.currencies||[];$('coverageCount').textContent=`${c.length} CURRENCIES`;$('currencyList').innerHTML=c.map(x=>`<div class="currency"><b>${esc(x.code)}</b><span>${n(x.maxGapBp)} bp · ${x.flaggedPairs} flagged</span></div>`).join('');
+}
+function history(){
+ const h=D.history||[],mx=Math.max(1,...h.map(x=>Number(x.largestGapBp)||0));
+ $('history').innerHTML=h.map(x=>{const v=Number(x.largestGapBp)||0,cl=v>=25?'hot':v>=10?'flag':'';return `<div class="bar ${cl}" style="height:${Math.max(5,v/mx*100)}%" data-tip="${esc(String(x.ecbDate||'snapshot'))} · ${n(v)} bp"></div>`}).join('')||'<div class="empty">History begins with the next published snapshots.</div>';
 }
 function draw(){
-  const c=$('fxCanvas'),ctx=c.getContext('2d'),r=c.getBoundingClientRect(),dpr=devicePixelRatio||1;
-  c.width=r.width*dpr;c.height=r.height*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,r.width,r.height);
-  const cs=(D?.currencies||[]).map(x=>typeof x==='string'?{code:x}:x).slice(0,28);
-  if(!cs.length){ctx.fillStyle='#738178';ctx.font='11px ui-monospace,monospace';ctx.fillText('AWAITING NETWORK SNAPSHOT',28,r.height-34);return}
-  const cx=r.width*.5,cy=r.height*.54,R=Math.min(r.width*.34,r.height*.31);
-  const nodes=cs.map((x,i)=>({...x,x:cx+Math.cos(i/cs.length*Math.PI*2-Math.PI/2)*R,y:cy+Math.sin(i/cs.length*Math.PI*2-Math.PI/2)*R}));
-  const map=Object.fromEntries(nodes.map(x=>[x.code,x]));
-  for(const e of (D?.edges||[]).slice(0,120)){const a=map[e.from],b=map[e.to];if(!a||!b)continue;ctx.strokeStyle=e.classification==='dislocation'?'rgba(231,127,127,.7)':e.classification==='review'?'rgba(230,190,103,.5)':'rgba(104,232,157,.12)';ctx.lineWidth=e.classification==='normal'?.6:1.1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
-  nodes.forEach((x,i)=>{ctx.beginPath();ctx.fillStyle='#0b100d';ctx.strokeStyle=i%5===0?'#68e89d':'#355342';ctx.lineWidth=1.1;ctx.arc(x.x,x.y,15,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#e2e9e4';ctx.font='9px ui-monospace,monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(x.code,x.x,x.y)});
+ const c=$('fxCanvas'),ctx=c.getContext('2d'),r=c.getBoundingClientRect(),dpr=devicePixelRatio||1;c.width=r.width*dpr;c.height=r.height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,r.width,r.height);
+ const cs=(D?.currencies||[]).map(x=>x.code).slice(0,28);if(!cs.length){ctx.fillStyle='#738178';ctx.font='10px ui-monospace,monospace';ctx.fillText('AWAITING NETWORK DATA',26,r.height-28);return}
+ const cx=r.width*.51,cy=r.height*.56,R=Math.min(r.width*.34,r.height*.31),nodes=cs.map((code,i)=>({code,x:cx+Math.cos(i/cs.length*Math.PI*2-Math.PI/2)*R,y:cy+Math.sin(i/cs.length*Math.PI*2-Math.PI/2)*R})),map=Object.fromEntries(nodes.map(x=>[x.code,x]));
+ let edges=D.edges||[];if(MODE==='flagged')edges=edges.filter(e=>e.classification!=='normal');if(MODE==='hot')edges=edges.filter(e=>e.classification==='dislocation');DRAW=[];
+ for(const e of edges){const a=map[e.from],b=map[e.to];if(!a||!b)continue;ctx.strokeStyle=e.classification==='dislocation'?'rgba(227,127,127,.72)':e.classification==='review'?'rgba(228,189,103,.48)':'rgba(104,232,157,.085)';ctx.lineWidth=e.classification==='normal'?.45:1.1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();DRAW.push({e,a,b})}
+ nodes.forEach(x=>{ctx.beginPath();ctx.fillStyle='#0b100d';ctx.strokeStyle='#355443';ctx.lineWidth=1.1;ctx.arc(x.x,x.y,14,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#e1e8e3';ctx.font='8px ui-monospace,monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(x.code,x.x,x.y)});
 }
-async function boot(){
-  try{
-    const r=await fetch(`${DATA_URL}?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw Error(r.status);D=await r.json();
-    summary();tape();lab();draw();
-  }catch(e){$('mState').textContent='NO DATA';$('mAsOf').textContent='UNAVAILABLE';draw()}
-}
+function dist(px,py,a,b){const vx=b.x-a.x,vy=b.y-a.y,wx=px-a.x,wy=py-a.y,c1=vx*wx+vy*wy,c2=vx*vx+vy*vy,t=Math.max(0,Math.min(1,c1/c2)),dx=px-(a.x+t*vx),dy=py-(a.y+t*vy);return Math.hypot(dx,dy)}
+$('fxCanvas').onclick=e=>{const r=e.currentTarget.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let best=null,bd=12;for(const d of DRAW){const dd=dist(x,y,d.a,d.b);if(dd<bd){bd=dd;best=d}}if(best){const p=D.pairs.find(x=>x.id===best.e.id);if(p)inspect(p)}};
+document.querySelectorAll('.maptools button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.maptools button').forEach(x=>x.classList.remove('active'));b.classList.add('active');MODE=b.dataset.mode;draw()});
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');FILTER=b.dataset.filter;tape()});
+async function boot(){try{const r=await fetch(`${DATA}?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw Error(r.status);D=await r.json();summary();tape();lab();coverage();history();draw()}catch(e){$('mState').textContent='NO DATA';$('mAsOf').textContent='UNAVAILABLE';draw()}}
 window.addEventListener('resize',()=>D&&draw());boot();
 </script>
-</body>
-</html>
+</body></html>
