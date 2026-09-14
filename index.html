@@ -34,7 +34,7 @@
 </section>
 
 <aside class="side">
-<section class="panel"><div class="panelhead"><h2>Market pulse</h2><span class="badge" id="mAsOf">NO SNAPSHOT</span></div><div class="pulse"><div class="p"><div class="k">Median gap</div><div class="v" id="mMedian">—</div><div class="s">across all cross-rates</div></div><div class="p"><div class="k">Data state</div><div class="v" id="mState">WAIT</div><div class="s">reference data only</div></div></div></section>
+<section class="panel"><div class="panelhead"><h2>Market pulse</h2><span class="badge" id="mAsOf">NO SNAPSHOT</span></div><div class="empty" id="schemaNotice" style="display:none;margin-bottom:10px;color:var(--amber)"></div><div class="pulse"><div class="p"><div class="k">Median gap</div><div class="v" id="mMedian">—</div><div class="s">across all cross-rates</div></div><div class="p"><div class="k">Data state</div><div class="v" id="mState">WAIT</div><div class="s">reference data only</div></div></div></section>
 
 <section class="panel" id="tape"><div class="panelhead"><h2>Gap tape</h2><span class="badge" id="tapeCount">—</span></div><div class="filters"><button class="active" data-filter="flagged">Flagged</button><button data-filter="all">Largest 40</button><button data-filter="hot">Dislocations</button></div><div class="tape" id="tapeRows"><div class="empty">Waiting for current snapshot.</div></div></section>
 
@@ -57,13 +57,13 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const cls=x=>x?.classification==='dislocation'?'bad':x?.classification==='review'?'warn':'good';
 
 function summary(){
- const s=D.summary||{};$('mCurrencies').textContent=s.currencies??'—';$('mPairs').textContent=s.crossRates??'—';$('mFlagged').textContent=s.flagged??'—';$('mGap').textContent=Number.isFinite(+s.largestGapBp)?`${n(s.largestGapBp)} bp`:'—';$('mMedian').textContent=Number.isFinite(+s.medianGapBp)?`${n(s.medianGapBp)} bp`:'—';$('mState').textContent=(D.dataState||'REFERENCE').replace('REFERENCE · ','');$('mAsOf').textContent=D.asOf?String(D.asOf).slice(0,10):'NO SNAPSHOT';
+ const s=D.summary||{};$('mCurrencies').textContent=s.currencies??'—';$('mPairs').textContent=s.crossRates??'—';$('mFlagged').textContent=s.flagged??'—';$('mGap').textContent=Number.isFinite(+s.largestGapBp)?`${n(s.largestGapBp)} bp`:'—';$('mMedian').textContent=Number.isFinite(+s.medianGapBp)?`${n(s.medianGapBp)} bp`:'—';$('mState').textContent=(D.dataState||'REFERENCE').replace('REFERENCE · ','');$('mAsOf').textContent=D.asOf?String(D.asOf).slice(0,10):'NO SNAPSHOT';const sn=$('schemaNotice');if(D.schemaVersion!=='BSARB-2.0'){sn.style.display='block';sn.textContent=`Engine snapshot ${D.schemaVersion||'legacy'} detected. Run the V3 data action once to publish BSARB-2.0.`}else{sn.style.display='none';}
 }
 function inspect(x){
  $('inspector').innerHTML=`<div class="panelhead"><h2>Cross-rate inspector</h2><span class="badge">${esc((x.classification||'normal').toUpperCase())}</span></div><h3>${esc(x.path)}</h3><div class="kv"><span>ECB implied</span><b class="mono">${n(x.ecbCross,6)}</b></div><div class="kv"><span>BoC implied</span><b class="mono">${n(x.bocCross,6)}</b></div><div class="kv"><span>Gap</span><b class="mono ${cls(x)}">${n(x.rawGapBp,2)} bp</b></div><div class="kv"><span>ECB date</span><b class="mono">${esc(x.ecbDate)}</b></div><div class="kv"><span>BoC date</span><b class="mono">${esc(x.bocDate)}</b></div><div class="kv"><span>Synchronization</span><b class="mono">${esc(x.synchronization)}</b></div><div class="kv"><span>Persistence</span><b class="mono">${esc(x.persistence)}</b></div><div class="empty" style="margin-top:11px">${esc(x.note)}</div>`;
 }
 function tape(){
- let a=D.pairs||[];
+ let a=Array.isArray(D?.pairs)?D.pairs:[];
  if(FILTER==='flagged')a=a.filter(x=>x.classification!=='normal');
  else if(FILTER==='hot')a=a.filter(x=>x.classification==='dislocation');
  else a=a.slice(0,40);
@@ -72,16 +72,55 @@ function tape(){
  document.querySelectorAll('.row').forEach(el=>el.onclick=()=>inspect(D.pairs.find(x=>x.id===el.dataset.id)));
 }
 function lab(){
- const cs=(D.currencies||[]).map(x=>x.code);const b=$('base'),q=$('quote');
- b.innerHTML=cs.map((c,i)=>`<option ${i===0?'selected':''}>${c}</option>`).join('');
- q.innerHTML=cs.map((c,i)=>`<option ${i===1?'selected':''}>${c}</option>`).join('');
- function ensure(){if(b.value===q.value){const idx=(cs.indexOf(b.value)+1)%cs.length;q.value=cs[idx]}}
+ const cs=(D?.currencies||[]).map(x=>typeof x==='string'?x:x.code).filter(Boolean);
+ const b=$('base'),q=$('quote');
+ b.innerHTML=cs.map((c,i)=>`<option ${i===0?'selected':''}>${esc(c)}</option>`).join('');
+ q.innerHTML=cs.map((c,i)=>`<option ${i===1?'selected':''}>${esc(c)}</option>`).join('');
+
+ const currentPairs=()=>Array.isArray(D?.pairs)?D.pairs:[];
+ function ensure(){
+   if(!cs.length)return;
+   if(b.value===q.value){
+     const idx=(cs.indexOf(b.value)+1)%cs.length;
+     q.value=cs[idx];
+   }
+ }
+ function compare(){
+   ensure();
+   const pairs=currentPairs();
+   if(!pairs.length){
+     $('labGap').textContent='DATA UPDATE REQUIRED';
+     $('labCopy').textContent='The V3 interface is active, but the public JSON is still from the older engine schema. Run the Observatory GitHub Action once after uploading the V3 engine files.';
+     return;
+   }
+   const a=[b.value,q.value].sort();
+   const id=`${a[0]}-${a[1]}`;
+   const x=pairs.find(p=>p.id===id);
+   if(!x){
+     $('labGap').textContent='UNAVAILABLE';
+     $('labCopy').textContent='This pair is not present in the current overlapping official coverage.';
+     return;
+   }
+   $('labGap').textContent=`${n(x.rawGapBp,2)} bp`;
+   $('labCopy').textContent=`ECB-implied ${x.path}: ${n(x.ecbCross,6)} · BoC-implied: ${n(x.bocCross,6)} · ${(x.classification||'observed').toUpperCase()} · ${x.synchronization||'reference data'}.`;
+   inspect(x);
+ }
  b.onchange=ensure;q.onchange=ensure;
- $('calculate').onclick=()=>{ensure();const a=[b.value,q.value].sort();const id=`${a[0]}-${a[1]}`;const x=D.pairs.find(p=>p.id===id);if(!x){$('labGap').textContent='UNAVAILABLE';$('labCopy').textContent='The selected pair is not present in current overlapping official coverage.';return}$('labGap').textContent=`${n(x.rawGapBp,2)} bp`;$('labCopy').textContent=`ECB-implied ${x.path}: ${n(x.ecbCross,6)} · BoC-implied: ${n(x.bocCross,6)} · ${x.classification.toUpperCase()} · ${x.synchronization}.`;inspect(x)}
- $('calculate').click();
+ $('calculate').onclick=compare;
+ if(currentPairs().length) compare();
+ else {
+   $('labGap').textContent='DATA UPDATE REQUIRED';
+   $('labCopy').textContent='The interface is ready, but the current public JSON has not yet been rebuilt by the V3 data engine.';
+ }
 }
 function coverage(){
- const c=D.currencies||[];$('coverageCount').textContent=`${c.length} CURRENCIES`;$('currencyList').innerHTML=c.map(x=>`<div class="currency"><b>${esc(x.code)}</b><span>${n(x.maxGapBp)} bp · ${x.flaggedPairs} flagged</span></div>`).join('');
+ const c=(D?.currencies||[]).map(x=>typeof x==='string'?{code:x}:x);
+ $('coverageCount').textContent=`${c.length} CURRENCIES`;
+ $('currencyList').innerHTML=c.map(x=>{
+   const gap=Number.isFinite(Number(x.maxGapBp))?`${n(x.maxGapBp)} bp`:'— bp';
+   const flagged=Number.isFinite(Number(x.flaggedPairs))?Number(x.flaggedPairs):0;
+   return `<div class="currency"><b>${esc(x.code)}</b><span>${gap} · ${flagged} flagged</span></div>`;
+ }).join('');
 }
 function history(){
  const h=D.history||[],mx=Math.max(1,...h.map(x=>Number(x.largestGapBp)||0));
@@ -96,7 +135,7 @@ function draw(){
  nodes.forEach(x=>{ctx.beginPath();ctx.fillStyle='#0b100d';ctx.strokeStyle='#355443';ctx.lineWidth=1.1;ctx.arc(x.x,x.y,14,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#e1e8e3';ctx.font='8px ui-monospace,monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(x.code,x.x,x.y)});
 }
 function dist(px,py,a,b){const vx=b.x-a.x,vy=b.y-a.y,wx=px-a.x,wy=py-a.y,c1=vx*wx+vy*wy,c2=vx*vx+vy*vy,t=Math.max(0,Math.min(1,c1/c2)),dx=px-(a.x+t*vx),dy=py-(a.y+t*vy);return Math.hypot(dx,dy)}
-$('fxCanvas').onclick=e=>{const r=e.currentTarget.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let best=null,bd=12;for(const d of DRAW){const dd=dist(x,y,d.a,d.b);if(dd<bd){bd=dd;best=d}}if(best){const p=D.pairs.find(x=>x.id===best.e.id);if(p)inspect(p)}};
+$('fxCanvas').onclick=e=>{const r=e.currentTarget.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let best=null,bd=12;for(const d of DRAW){const dd=dist(x,y,d.a,d.b);if(dd<bd){bd=dd;best=d}}if(best){const p=(D?.pairs||[]).find(x=>x.id===best.e.id);if(p)inspect(p)}};
 document.querySelectorAll('.maptools button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.maptools button').forEach(x=>x.classList.remove('active'));b.classList.add('active');MODE=b.dataset.mode;draw()});
 document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');FILTER=b.dataset.filter;tape()});
 async function boot(){try{const r=await fetch(`${DATA}?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw Error(r.status);D=await r.json();summary();tape();lab();coverage();history();draw()}catch(e){$('mState').textContent='NO DATA';$('mAsOf').textContent='UNAVAILABLE';draw()}}
