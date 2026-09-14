@@ -1,0 +1,11 @@
+{
+  "name": "bondstats-arbitrage-core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "validate": "node src/validate.mjs",
+    "test": "node --test src/*.test.mjs"
+  }
+}
