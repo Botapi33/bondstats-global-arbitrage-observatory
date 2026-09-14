@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "BSARB-1.0",
+  "modelVersion": "FX-REFERENCE-DISLOCATION-1.0",
+  "asOf": null,
+  "dataState": "AWAITING FIRST RUN",
+  "sourceDates": {},
+  "summary": {
+    "currencies": 0,
+    "triangles": 0,
+    "dislocations": 0,
+    "largestGapBp": null
+  },
+  "currencies": [],
+  "edges": [],
+  "triangles": [],
+  "dislocations": [],
+  "methodology": {
+    "executable": false,
+    "reason": "Awaiting first official-source engine run."
+  },
+  "sources": []
+}
